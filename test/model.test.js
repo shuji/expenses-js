@@ -58,6 +58,11 @@ describe('EamingAndExpense', function() {
                 expect(sut.amount()).to.be(1000);
             })
         })
+        describe('#list()', function() {
+            it('should retun array of one eaming', function() {
+                expect(sut.list()).to.eql([new Eaming('20130223', 1000, '2月の小遣い')]);
+            })
+       })
     })
 })
 

@@ -23,7 +23,7 @@ function EamingAndExpense() {
         return total;
     }
     this.list = function() {
-        return [];
+        return self.array;
     }
     this.add = function(e) {
         self.array.push(e);
