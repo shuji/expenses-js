@@ -37,8 +37,8 @@ describe('Expense', function() {
 })
 
 describe('EamingAndExpense', function() {
-    var sut = new EamingAndExpense();
     describe('Inital instance', function() {
+        var sut = new EamingAndExpense();
         describe('#amount()', function() {
             it('should retun 0', function() {
                 expect(sut.amount()).to.be(0);
@@ -49,6 +49,15 @@ describe('EamingAndExpense', function() {
                 expect(sut.list()).to.eql([]);
             })
        })
+    })
+    describe('When adding 1 eaming of 1000', function() {
+        var sut = new EamingAndExpense();
+        sut.add(new Eaming('20130223', 1000, '2月の小遣い'));
+        describe('#amount()', function() {
+            it('should retun 1000', function() {
+                expect(sut.amount()).to.be(1000);
+            })
+        })
     })
 })
 

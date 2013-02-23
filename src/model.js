@@ -12,12 +12,21 @@ function Expense(date, amount, desc) {
 }
 
 function EamingAndExpense() {
+    var self = this;
+    this.array = [];
     this.amount = function() {
-        return 0;
+        var total = 0;
+        // TODO jQueryで書き換える
+        for (var i = 0; i < self.array.length; i++) {
+            total =  total + self.array[i].amount;
+        }
+        return total;
     }
-
     this.list = function() {
         return [];
+    }
+    this.add = function(e) {
+        self.array.push(e);
     }
 }
 
