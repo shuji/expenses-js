@@ -64,10 +64,23 @@ function list() {
     if (list.length == 0) {
         appendToScreen('記録されている収支はありません');
     } else {
+        var table = '<table>';
+        table += '<tr><td>日付</td><td>収入</td><td>支出</td><td>適用</td></tr>';
         $.each(list, function(index, value) {
-            var type = (value.constructor == Eaming) ? '収入' : '支出';
-            appendToScreen(type + ' ' + value.date + ' ' + value.amount + ' ' + value.desc );
+            table += '<tr>';
+            table += '<td>' + value.date + '</td>';
+            if (value.constructor == Eaming) {
+                table += '<td>' + value.amount + '</td>';
+                table += '<td>-</td>';
+            } else {
+                table += '<td>-</td>';
+                table += '<td>' + value.amount + '</td>';
+            }
+            table += '<td>' + value.desc + '</td>';
+            table += '</tr>';
         });
+        table += '</table>';
+        $('#screen').append(table);   
     }
 }
 
