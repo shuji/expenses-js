@@ -15,6 +15,10 @@ function EamingAndExpense() {
     this.amount = function() {
         return 0;
     }
+
+    this.list = function() {
+        return [];
+    }
 }
 
 module.exports.Eaming = Eaming;

@@ -4,6 +4,7 @@ var Eaming = exports.Eaming;
 var Expense = exports.Expense;
 var EamingAndExpense = exports.EamingAndExpense;
 var assert = require("assert");
+var expect = require('expect.js');
 
 describe('Eaming', function() {
     var instance = new Eaming('20130223', 1000, '小遣い');
@@ -43,6 +44,11 @@ describe('EamingAndExpense', function() {
                 assert.equal(0, sut.amount());
             })
         })
+        describe('#list()', function() {
+            it('should retun empty array', function() {
+                expect(sut.list()).to.eql([]);
+            })
+       })
     })
 })
 
