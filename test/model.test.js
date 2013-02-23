@@ -2,6 +2,7 @@
 var exports = require("../src/model");
 var Eaming = exports.Eaming;
 var Expense = exports.Expense;
+var EamingAndExpense = exports.EamingAndExpense;
 var assert = require("assert");
 
 describe('Eaming', function() {
@@ -33,4 +34,16 @@ describe('Expense', function() {
         })
     })
 })
+
+describe('EamingAndExpense', function() {
+    var sut = new EamingAndExpense();
+    describe('Inital instance', function() {
+        describe('#amount()', function() {
+            it('should retun 0', function() {
+                assert.equal(0, sut.amount());
+            })
+        })
+    })
+})
+
 
