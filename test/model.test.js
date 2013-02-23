@@ -18,6 +18,9 @@ describe('Eaming', function() {
         it('should have attribute `desc`', function() {
             expect(instance.desc).equal('小遣い');
         })
+        it('should have attribute `constructor`', function() {
+            expect(instance.constructor).equal(Eaming);
+        })
     })
 })
 
@@ -32,6 +35,9 @@ describe('Expense', function() {
         })
         it('should have attribute `desc`', function() {
             expect(instance.desc).equal('缶コーヒー');
+        })
+        it('should have attribute `constructor`', function() {
+            expect(instance.constructor).equal(Expense);
         })
     })
 })
