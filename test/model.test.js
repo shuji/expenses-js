@@ -10,13 +10,13 @@ describe('Eaming', function() {
     var instance = new Eaming('20130223', 1000, '小遣い');
     describe('Constractor', function() {
         it('should have attribute `date`', function() {
-            assert.equal('20130223', instance.date);
+            expect(instance.date).equal('20130223');
         })
         it('should have attribute `amount`', function() {
-            assert.equal(1000, instance.amount);
+            expect(instance.amount).equal(1000);
         })
         it('should have attribute `desc`', function() {
-            assert.equal('小遣い', instance.desc);
+            expect(instance.desc).equal('小遣い');
         })
     })
 })
@@ -25,13 +25,13 @@ describe('Expense', function() {
     var instance = new Expense('20130301', 120, '缶コーヒー');
     describe('Constractor', function() {
         it('should have attribute `date`', function() {
-            assert.equal('20130301', instance.date);
+            expect(instance.date).equal('20130301');
         })
         it('should have attribute `amount`', function() {
-            assert.equal(120, instance.amount);
+            expect(instance.amount).equal(120);
         })
         it('should have attribute `desc`', function() {
-            assert.equal('缶コーヒー', instance.desc);
+            expect(instance.desc).equal('缶コーヒー');
         })
     })
 })
@@ -41,7 +41,7 @@ describe('EamingAndExpense', function() {
     describe('Inital instance', function() {
         describe('#amount()', function() {
             it('should retun 0', function() {
-                assert.equal(0, sut.amount());
+                expect(sut.amount()).to.be(0);
             })
         })
         describe('#list()', function() {
