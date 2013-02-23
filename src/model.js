@@ -34,7 +34,8 @@ function EamingAndExpense() {
     }
 }
 
-module.exports.Eaming = Eaming;
-module.exports.Expense = Expense;
-module.exports.EamingAndExpense = EamingAndExpense;
-
+if (typeof module != 'undefined') {
+    module.exports.Eaming = Eaming;
+    module.exports.Expense = Expense;
+    module.exports.EamingAndExpense = EamingAndExpense;
+}
