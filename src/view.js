@@ -75,7 +75,7 @@ function eaming(args) {
         model.add(new Eaming(args[0], Number(args[1]), args[2]));
         appendToScreen(args[0] + 'の収入として、' + args[1] + '(' + args[2] + ')を追加しました');
     } else {
-        onArgsError('eaming [YYYYMMDD] [金額] [用途]');
+        onArgsError(commandsUsage['eaming'][0]);
     }
 }
 
@@ -91,7 +91,7 @@ function expense(args) {
         model.add(new Expense(args[0], Number(args[1]), args[2]));
         appendToScreen(args[0] + 'の支出として、' + args[1] + '(' + args[2] + ')を追加しました');
     } else {
-        onArgsError('expense [YYYYMMDD] [金額] [用途]');
+        onArgsError(commandsUsage['expense'][0]);
     }
 }
 
