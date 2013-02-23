@@ -13,7 +13,9 @@ $(function() {
 
 function onEnterKey() {
     console.log("#onEnterKey");
-    var command = $('#commandline').val();
+    var inputs = $('#commandline').val().split(' ');
+    var command = inputs[0];
+    var args = inputs.slice(1);
     console.log(command);
     switch(command) {
       case 'amount':
@@ -21,6 +23,9 @@ function onEnterKey() {
           break;
       case 'list':
           list();
+          break;
+      case 'eaming':
+          eaming(args);
           break;
       default:
           invalidCommand();
@@ -44,6 +49,20 @@ function list() {
         appendToScreen('記録されている収支はありません');
     }
     clearCommandline();
+}
+
+function eaming(args) {
+    console.log("#eaming", args);
+    var onError = function() {
+      appendToScreen('不正な引数です');
+      appendToScreen('使い方: eaming [YYYYMMDD] [金額] [用途]');
+      clearCommandline();
+      return;
+    };
+    if (args.length != 3) onError();
+    else if (args[0].length != 8) onError();
+    else if (!Number(args[1])) onError();
+    else model.add(new Eaming(args[0], Number(args[1]), args[2]));
 }
 
 function invalidCommand() {
