@@ -1,5 +1,12 @@
 // init
 var model = undefined;
+var commandsUsage = {
+    amount: ['amount', '現在の残高を表示します'],
+    list: ['list', '収支の一覧を表示します'],
+    expense: ['expense [YYYYMMDD] [金額] [用途]', '支出を追加します'],
+    eaming: ['eaming [YYYYMMDD] [金額] [用途]', '収入を追加します'],
+    help: ['help', 'コマンドの一覧を表示します'],
+}
 $(function() {
     console.log('init');
     model = new EamingAndExpense();
@@ -30,10 +37,14 @@ function onEnterKey() {
       case 'expense':
           expense(args);
           break;
+      case 'help':
+          help();
+          break;
       default:
           invalidCommand();
           break;
     }
+    clearCommandline();
 }
 
 function amount() {
@@ -41,7 +52,6 @@ function amount() {
     var amount = model.amount(); 
     console.log(amount, model);
     appendToScreen('現在の残高は、' + amount + 'です');
-    clearCommandline();
 }
 
 function list() {
@@ -51,7 +61,6 @@ function list() {
     if (list.length == 0) {
         appendToScreen('記録されている収支はありません');
     }
-    clearCommandline();
 }
 
 function eaming(args) {
@@ -68,7 +77,6 @@ function eaming(args) {
     } else {
         onArgsError('eaming [YYYYMMDD] [金額] [用途]');
     }
-    clearCommandline();
 }
 
 function expense(args) {
@@ -85,7 +93,15 @@ function expense(args) {
     } else {
         onArgsError('expense [YYYYMMDD] [金額] [用途]');
     }
-    clearCommandline();
+}
+
+function help() {
+    appendToScreen('ヘルプ：');
+    $.each(commandsUsage, function(command, usage) {
+      appendToScreen('　' + usage[0]);
+      appendToScreen('　　' + usage[1]);
+      appendToScreen('');
+    });
 }
 
 function onArgsError(usage) {
@@ -96,7 +112,6 @@ function onArgsError(usage) {
 function invalidCommand() {
     console.log("#invalidCommand");
     appendToScreen('無効なコマンドです');
-    clearCommandline();
 }
 
 function appendToScreen(msg) {
