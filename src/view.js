@@ -7,23 +7,37 @@ var commandsUsage = {
     eaming: ['eaming [YYYYMMDD] [金額] [用途]', '収入を追加します'],
     help: ['help', 'コマンドの一覧を表示します'],
 }
+var commandHistory = [];
+var historyIndex = -1;
 $(function() {
     console.log('init');
     model = new EamingAndExpense();
     console.log(model);
     $('#commandline').bind('keydown', function(e){
        var code = (e.keyCode ? e.keyCode : e.which);
-       if (code == 13) onEnterKey();
+       switch (code) {
+         case 13:
+             onEnterKey();
+             break;
+         case 38:
+             showCommandHistory(+1);
+             break;
+         case 40:
+             showCommandHistory(-1);
+             break;
+       }
     });
     $('#commandline').focus();
 });
 
 function onEnterKey() {
     console.log("#onEnterKey");
-    var inputs = $('#commandline').val().split(' ');
+    var line = $('#commandline').val();
+    var inputs = line.split(' ');
     var command = inputs[0];
     var args = inputs.slice(1);
-    console.log(command);
+    commandHistory.push(line);
+    console.log(line);
     switch(command) {
       case 'amount':
           amount();
@@ -48,6 +62,7 @@ function onEnterKey() {
           break;
     }
     clearCommandline();
+    historyIndex = commandHistory.length - 1;
 }
 
 function amount() {
@@ -142,3 +157,17 @@ function appendToScreen(msg) {
 function clearCommandline() {
     $('#commandline').val('');  
 }
+
+function showCommandHistory(count) {
+    console.log("#showCommandHistory", count);
+    if (commandHistory.length == 0) return;
+    historyIndex = historyIndex + count;
+    if (historyIndex < 0) {
+        historyIndex = 0;
+    } else if (commandHistory.length <= historyIndex) {
+        clearCommandline();
+        return;
+    }
+    $('#commandline').val(commandHistory[historyIndex]);
+}
+
