@@ -8,6 +8,7 @@ $(function() {
        var code = (e.keyCode ? e.keyCode : e.which);
        if (code == 13) onEnterKey();
     });
+    $('#commandline').focus();
 });
 
 function onEnterKey() {
