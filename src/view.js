@@ -18,6 +18,9 @@ function onEnterKey() {
       case 'amount':
           amount();
           break;
+      case 'list':
+          list();
+          break;
       default:
           break;
     }
@@ -31,3 +34,13 @@ function amount() {
     $('#commandline').val('');
 }
 
+function list() {
+    console.log("#list");
+    var list = model.list();
+    console.log(list);
+    if (list.length == 0) {
+        $('#screen').append('<div>記録されている収支はありません</div>');    
+    }
+    $('#commandline').val('');
+
+}
