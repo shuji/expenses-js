@@ -19,9 +19,9 @@ function EamingAndExpense() {
         for (var i = 0; i < self.array.length; i++) {
             var e = self.array[i];
             if (e.constructor == Expense) {
-                total =  total - self.array[i].amount;
+                total -= self.array[i].amount;
             } else {
-                total =  total + self.array[i].amount;
+                total += self.array[i].amount;
             }
         }
         return total;
