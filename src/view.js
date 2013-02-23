@@ -32,8 +32,8 @@ function amount() {
     console.log("#amount");
     var amount = model.amount(); 
     console.log(amount, model);
-    $('#screen').append('<div>現在の残高は、' + amount + 'です</div>');
-    $('#commandline').val('');
+    appendToScreen('現在の残高は、' + amount + 'です');
+    clearCommandline();
 }
 
 function list() {
@@ -41,15 +41,21 @@ function list() {
     var list = model.list();
     console.log(list);
     if (list.length == 0) {
-        $('#screen').append('<div>記録されている収支はありません</div>');    
+        appendToScreen('記録されている収支はありません');
     }
-    $('#commandline').val('');
-
+    clearCommandline();
 }
 
 function invalidCommand() {
     console.log("#invalidCommand");
-    $('#screen').append('<div>無効なコマンドです</div>');    
-    $('#commandline').val('');
+    appendToScreen('無効なコマンドです');
+    clearCommandline();
+}
 
+function appendToScreen(msg) {
+    $('#screen').append('<div>' + msg + '</div>');   
+}
+
+function clearCommandline() {
+    $('#commandline').val('');  
 }
