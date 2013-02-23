@@ -74,7 +74,7 @@ describe('EamingAndExpense', function() {
         var sut = new EamingAndExpense();
         sut.add(new Eaming('20130223', 1000, '2月の小遣い'));
         sut.add(new Expense('20130224', 120, 'コーラ'));
-        describe.skip('#amount()', function() {
+        describe('#amount()', function() {
             it('should retun 880', function() {
                 expect(sut.amount()).to.be(880);
             })

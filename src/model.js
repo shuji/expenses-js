@@ -17,7 +17,12 @@ function EamingAndExpense() {
     this.amount = function() {
         var total = 0;
         for (var i = 0; i < self.array.length; i++) {
-            total =  total + self.array[i].amount;
+            var e = self.array[i];
+            if (e.constructor == Expense) {
+                total =  total - self.array[i].amount;
+            } else {
+                total =  total + self.array[i].amount;
+            }
         }
         return total;
     }
