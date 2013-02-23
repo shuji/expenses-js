@@ -23,6 +23,7 @@ function onEnterKey() {
           list();
           break;
       default:
+          invalidCommand();
           break;
     }
 }
@@ -42,6 +43,13 @@ function list() {
     if (list.length == 0) {
         $('#screen').append('<div>記録されている収支はありません</div>');    
     }
+    $('#commandline').val('');
+
+}
+
+function invalidCommand() {
+    console.log("#invalidCommand");
+    $('#screen').append('<div>無効なコマンドです</div>');    
     $('#commandline').val('');
 
 }
