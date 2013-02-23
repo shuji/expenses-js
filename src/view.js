@@ -27,6 +27,9 @@ function onEnterKey() {
       case 'eaming':
           eaming(args);
           break;
+      case 'expense':
+          expense(args);
+          break;
       default:
           invalidCommand();
           break;
@@ -53,16 +56,41 @@ function list() {
 
 function eaming(args) {
     console.log("#eaming", args);
-    var onError = function() {
-      appendToScreen('不正な引数です');
-      appendToScreen('使い方: eaming [YYYYMMDD] [金額] [用途]');
-      clearCommandline();
-      return;
+    var validate = function(args) {
+        if (args.length != 3) return false;
+        else if (args[0].length != 8) return false;
+        else if (!Number(args[1])) return false;
+        else return true;
     };
-    if (args.length != 3) onError();
-    else if (args[0].length != 8) onError();
-    else if (!Number(args[1])) onError();
-    else model.add(new Eaming(args[0], Number(args[1]), args[2]));
+    if (validate(args)) {
+        model.add(new Eaming(args[0], Number(args[1]), args[2]));
+        appendToScreen(args[0] + 'の収入として、' + args[1] + '(' + args[2] + ')を追加しました');
+    } else {
+        onArgsError('eaming [YYYYMMDD] [金額] [用途]');
+    }
+    clearCommandline();
+}
+
+function expense(args) {
+    console.log("#expense", args);
+    var validate = function(args) {
+        if (args.length != 3) return false;
+        else if (args[0].length != 8) return false;
+        else if (!Number(args[1])) return false;
+        else return true;
+    };
+    if (validate(args)) {
+        model.add(new Expense(args[0], Number(args[1]), args[2]));
+        appendToScreen(args[0] + 'の支出として、' + args[1] + '(' + args[2] + ')を追加しました');
+    } else {
+        onArgsError('expense [YYYYMMDD] [金額] [用途]');
+    }
+    clearCommandline();
+}
+
+function onArgsError(usage) {
+    appendToScreen('不正な引数です');
+    appendToScreen('使い方: ' + usage);
 }
 
 function invalidCommand() {
