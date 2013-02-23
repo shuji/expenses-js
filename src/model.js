@@ -16,7 +16,6 @@ function EamingAndExpense() {
     this.array = [];
     this.amount = function() {
         var total = 0;
-        // TODO jQueryで書き換える
         for (var i = 0; i < self.array.length; i++) {
             total =  total + self.array[i].amount;
         }

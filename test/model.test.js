@@ -64,6 +64,24 @@ describe('EamingAndExpense', function() {
             })
        })
     })
+    describe('When adding 1 eaming of 1000 and 1 expense of 120', function() {
+        var sut = new EamingAndExpense();
+        sut.add(new Eaming('20130223', 1000, '2月の小遣い'));
+        sut.add(new Expense('20130224', 120, 'コーラ'));
+        describe.skip('#amount()', function() {
+            it('should retun 880', function() {
+                expect(sut.amount()).to.be(880);
+            })
+        })
+        describe('#list()', function() {
+            it('should retun array of 1 eaming and 1 expense', function() {
+                expect(sut.list()).to.eql([
+                    new Eaming('20130223', 1000, '2月の小遣い'),
+                    new Expense('20130224', 120, 'コーラ')
+                ]);
+            })
+       })
+    })
 })
 
 
