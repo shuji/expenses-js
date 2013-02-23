@@ -31,7 +31,7 @@ function amount() {
     console.log("#amount");
     var amount = model.amount(); 
     console.log(amount, model);
-    $('#screen').append('<div>amount=' + amount + '</div>');
+    $('#screen').append('<div>現在の残高は、' + amount + 'です</div>');
     $('#commandline').val('');
 }
 
