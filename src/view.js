@@ -37,6 +37,9 @@ function onEnterKey() {
       case 'expense':
           expense(args);
           break;
+      case 'list':
+          list();
+          break;
       case 'help':
           help();
           break;
@@ -60,6 +63,11 @@ function list() {
     console.log(list);
     if (list.length == 0) {
         appendToScreen('記録されている収支はありません');
+    } else {
+        $.each(list, function(index, value) {
+            var type = (value.constructor == Eaming) ? '収入' : '支出';
+            appendToScreen(type + ' ' + value.date + ' ' + value.amount + ' ' + value.desc );
+        });
     }
 }
 
